@@ -20,8 +20,7 @@ A web-based event planner calendar with budget and expense tracking system.
 ## Technologies Used
 - HTML  
 - CSS  
-- JavaScript  
-- PHP  
+- Python    
 - MySQL  
 - GitHub  
 
@@ -42,4 +41,5 @@ A web-based event planner calendar with budget and expense tracking system.
 - Mobile-responsive design  
 
 ## Author
+
 Risha
