@@ -1,4 +1,4 @@
-# Event Planner Calendar with Budget Tracker System
+<img width="1919" height="1058" alt="image" src="https://github.com/user-attachments/assets/74d5553b-ac9f-47f9-8fa0-df98d9899013" /># Event Planner Calendar with Budget Tracker System
 
 ## Description
 A web-based event planner calendar with budget and expense tracking system.
@@ -41,5 +41,5 @@ A web-based event planner calendar with budget and expense tracking system.
 - Budget and expense report export (PDF or Excel)  
 - Mobile-responsive design  
 
-## Author
-Risha
+SCRUM-2 Ticket 2: Create Database Structure
+
