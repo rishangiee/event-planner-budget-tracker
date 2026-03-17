@@ -42,4 +42,4 @@ A web-based event planner calendar with budget and expense tracking system.
 - Mobile-responsive design  
 
 
-SCRUM-12 Ticket 1: Frontend and Backend Integration
+SCRUM-12-Ticket-1-Frontend-and-Backend-Integration
