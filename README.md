@@ -38,6 +38,6 @@ A web-based event planner calendar with budget and expense tracking system.
 - User authentication (login and registration)  
 - Event reminders and notifications  
 - Budget and expense report export (PDF or Excel)  
-- Mobile-responsive design  
+- Mobile-responsive design
 
 SCRUM-8-Ticket-2-Edit-and-Delete-Events
