@@ -41,5 +41,4 @@ A web-based event planner calendar with budget and expense tracking system.
 - Budget and expense report export (PDF or Excel)  
 - Mobile-responsive design  
 
-## Author
-Risha
+SCRUM-11 Ticket 5: Automatic Budget Calculation
