@@ -26,7 +26,6 @@ A web-based event planner calendar with budget and expense tracking system.
 
 ## Project Structure
 
-
 ## How to Run the Project
 1. Clone or download the repository from GitHub  
 2. Open the project folder on your computer  
@@ -40,6 +39,4 @@ A web-based event planner calendar with budget and expense tracking system.
 - Budget and expense report export (PDF or Excel)  
 - Mobile-responsive design  
 
-## Author
-
-Risha
+SCRUM-1 Ticket 1 : Repository & Environment Setup
