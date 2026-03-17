@@ -1,5 +1,3 @@
-<img width="1919" height="1058" alt="image" src="https://github.com/user-attachments/assets/74d5553b-ac9f-47f9-8fa0-df98d9899013" /># Event Planner Calendar with Budget Tracker System
-
 ## Description
 A web-based event planner calendar with budget and expense tracking system.
 
