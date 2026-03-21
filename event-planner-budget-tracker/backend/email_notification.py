@@ -1,71 +1,45 @@
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+from flask import render_template
+from flask_mail import Mail, Message
+import os
 
-# Configuration
-SMTP_SERVER = "smtp.gmail.com"
-SMTP_PORT = 587
-SMTP_USER = "your_email@gmail.com"
-SMTP_PASSWORD = "your_app_password"
-
-def send_reminder_email(to_email, event_name):
-    """Sends a reminder email for an event."""
-    try:
-        msg = MIMEMultipart()
-        msg['From'] = SMTP_USER
-        msg['To'] = to_email
-        msg['Subject'] = f"Event Reminder: {event_name}"
+class EmailNotification:
+    def __init__(self, config):
+        self.mail = Mail()
+        self.mail.init_app(app)  # app needs to be passed from app.py
         
-        body = f"""
-        Hello,
-        
-        This is a reminder about your upcoming event: {event_name}.
-        Please ensure all preparations are complete.
-        
-        Best regards,
-        Event Planner Team
-        """
-        
-        msg.attach(MIMEText(body, 'plain'))
-        
-        server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
-        server.starttls()
-        server.login(SMTP_USER, SMTP_PASSWORD)
-        server.send_message(msg)
-        server.quit()
-        
-        return True
-    except Exception as e:
-        print(f"Failed to send email: {e}")
-        return False
-
-def send_budget_alert(to_email, budget_status):
-    """Sends an alert if budget is exceeded."""
-    try:
-        msg = MIMEMultipart()
-        msg['From'] = SMTP_USER
-        msg['To'] = to_email
-        msg['Subject'] = "Budget Alert"
-        
-        body = f"""
-        Hello,
-        
-        Your budget status is: {budget_status}.
-        Please review your expenses.
-        
-        Best regards,
-        Event Planner Team
-        """
-        
-        msg.attach(MIMEText(body, 'plain'))
-        
-        server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
-        server.starttls()
-        server.login(SMTP_USER, SMTP_PASSWORD)
-        server.send_message(msg)
-        server.quit()
-        
-        return True
-    except Exception as e:
-        print(f"Failed to send budget alert: {e}")
-        return False
+    def send_welcome_email(self, email, name):
+        msg = Message(
+            subject='Welcome to Event Planner!',
+            recipients=[email],
+            html=render_template('email_template.html', 
+                               name=name, 
+                               action='welcome')
+        )
+        self.mail.send(msg)
+    
+    def send_budget_alert(self, email, name, event_name, budget, spent):
+        remaining = budget - spent
+        msg = Message(
+            subject=f'Budget Alert: {event_name}',
+            recipients=[email],
+            html=render_template('email_template.html',
+                               name=name,
+                               event_name=event_name,
+                               budget=budget,
+                               spent=spent,
+                               remaining=remaining,
+                               action='budget_alert')
+        )
+        self.mail.send(msg)
+    
+    def send_event_reminder(self, email, name, event_name, event_date):
+        msg = Message(
+            subject=f'Reminder: {event_name} is approaching!',
+            recipients=[email],
+            html=render_template('email_template.html',
+                               name=name,
+                               event_name=event_name,
+                               event_date=event_date,
+                               action='event_reminder')
+        )
+        self.mail.send(msg)
