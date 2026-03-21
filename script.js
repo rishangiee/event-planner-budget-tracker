@@ -127,7 +127,7 @@ function loadBudget() {
     if (eventSelect) {
         eventSelect.innerHTML = '<option value="">Select Event</option>';
         events.forEach(event => {
-            eventSelect.innerHTML += `<option value="${event.id}">${event.name}</option>`;
+        eventSelect.innerHTML += `<option value="${event.id}">${event.name}</option>`
         });
     }
 
