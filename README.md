@@ -10,12 +10,15 @@ A web-based event planner calendar with budget and expense tracking system.
 - To automatically calculate total expenses and remaining budget  
 
 ## Features
-- Create, edit, and delete events  
-- View events using a calendar interface  
-- Set a budget for each event  
-- Add and manage expenses  
-- Automatic calculation of total and remaining budget  
-- Simple and easy-to-use interface  
+- Login and registration
+- Dashboard (overview, budget, expenses, balance, upcoming events)
+- Calendar and event management
+- Event details (name, date, location, description)
+- Budget tracking per event
+- Expense tracking (add, edit, delete)
+- Task checklist
+- Categories and vendors management
+- Automatic budget calculation
 
 ## Technologies Used
 - HTML  
@@ -40,6 +43,3 @@ A web-based event planner calendar with budget and expense tracking system.
 - Budget and expense report export (PDF or Excel)  
 - Mobile-responsive design  
 
-## Author
-
-Risha
