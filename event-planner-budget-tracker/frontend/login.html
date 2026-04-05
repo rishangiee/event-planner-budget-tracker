@@ -3,25 +3,266 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Event Planner</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <title>Cavendia - Login</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #2b2b2b; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: sans-serif;
+        }
+
+        .app-container {
+            width: 95%;
+            max-width: 1000px;
+            background-color: #e8ede3;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        
+        header {
+            background-color: #b5d3af;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 25px;
+            width: 100%;
+        }
+
+        .nav-links, .auth-links {
+            display: flex;
+            gap: 20px;
+            align-items: center; 
+        }
+
+        .nav-links a, .auth-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 12px; 
+            font-weight: bold;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .logo {
+            font-family: 'Lalezar', cursive;
+            font-size: 36px; 
+            color: #4a7c49;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            line-height: 1;
+        }
+
+        .signup-btn-nav {
+            background-color: white;
+            padding: 6px 18px;
+            border-radius: 20px;
+        }
+
+        .main-content {
+            display: flex;
+            padding: 30px;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .image-section {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .image-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            display: block;
+        }
+
+        .form-section {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 20px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 800;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 14px;
+            color: #999;
+        }
+
+        .forgot-link {
+            display: block;
+            text-align: right;
+            font-size: 11px;
+            color: #666;
+            text-decoration: none;
+            margin-top: 5px;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #9cb994;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .signup-prompt {
+            text-align: center;
+            font-size: 13px;
+            margin-top: 15px;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            font-size: 12px;
+            color: #888;
+        }
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #ccc;
+            margin: 0 10px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            border: 1px solid #eee;
+        }
+
+        .fb { background: #1877f2; color: white; }
+        .google-btn { background: #ffffff; }
+        .google-btn img { width: 22px; height: 22px; }
+        .ig { background: linear-gradient(45deg, #f09433, #bc1888); color: white; }
+
+        @media (max-width: 850px) {
+            header {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            .logo { order: -1; width: 100%; justify-content: center; }
+        }
+    </style>
 </head>
 <body>
-    <div class="auth-container">
-        <h2>Login</h2>
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
+
+    <div class="app-container">
+        <header>
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Events</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+            
+            <div class="logo">
+                <i class="fa-solid fa-ticket"></i> CAVENDIA
             </div>
-            <button type="submit" class="btn">Login</button>
-        </form>
-        <p>Don't have an account? <a href="/register">Register here</a></p>
+            
+            <div class="auth-links">
+                <a href="#">Create Event</a>
+                <a href="#">Join</a>
+                <a href="#" class="signup-btn-nav">Sign Up</a>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="image-section">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuLlyjfu_htb-qkhMP0V7JPy5_saZHCfWW3N6Qy50VjmHV6Pun" alt="Cakes">
+            </div>
+
+            <div class="form-section">
+                <h2>Welcome Back</h2>
+                
+                <form>
+                    <div class="form-group">
+                        <input type="text" placeholder="Email or mobile number">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" placeholder="Password">
+                        <i class="fa-regular fa-eye password-toggle"></i>
+                        <a href="#" class="forgot-link">Forgot Password?</a>
+                    </div>
+                    <button type="button" class="login-btn">LOG IN</button>
+                </form>
+
+                <p class="signup-prompt">Don't have an account? <strong>Sign up</strong></p>
+
+                <div class="divider">Or sign up with</div>
+
+                <div class="social-icons">
+                    <a href="#" class="icon fb"><i class="fa-brands fa-facebook-f"></i></a>
+                    
+                    <a href="#" class="icon google-btn">
+                        <img src="https://www.gstatic.com/images/branding/product/1x/gsa_512dp.png" alt="Google Logo">
+                    </a>
+                    
+                    <a href="#" class="icon ig"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
     </div>
-    <script src="/js/script.js"></script>
+
 </body>
 </html>
