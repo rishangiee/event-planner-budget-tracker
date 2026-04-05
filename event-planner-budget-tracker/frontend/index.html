@@ -1,45 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Planner - Home</title>
-    <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8">
+  <title>Cavendia | Architecting Extraordinary Moments</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: #2f3e2c;
+    }
+
+    /* Navigation Bar */
+    nav {
+      background-color: #6b8e6b; /* sage green */
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav .logo {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: #fff;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+    }
+    nav ul li a:hover {
+      color: #dfe8df;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      text-align: center;
+    }
+    .hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .hero-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255,255,255,0.75); /* overlay for readability */
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 700px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .hero-text h1 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+    .hero-text p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+    .hero-text button {
+      background-color: #6b8e6b;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 25px;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .hero-text button:hover {
+      background-color: #5a7a5a;
+    }
+  </style>
 </head>
 <body>
-    <nav>
-        <div class="logo">EventPlanner</div>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/calendar">Calendar</a></li>
-            <li><a href="/budget">Budget</a></li>
-            <li><a href="/login">Login</a></li>
-        </ul>
-    </nav>
 
-    <header class="hero">
-        <h1>Plan Your Perfect Event</h1>
-        <p>Manage events, track budgets, and send notifications all in one place.</p>
-        <a href="/register" class="btn">Get Started</a>
-    </header>
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">CAVENDIA</div>
+    <ul>
+      <li><a href="#">HOME</a></li>
+      <li><a href="#">EVENTS</a></li>
+      <li><a href="#">ABOUT</a></li>
+      <li><a href="#">CONTACT</a></li>
+      <li><a href="#">CREATE EVENT</a></li>
+      <li><a href="#">LOGIN</a></li>
+      <li><a href="#">SIGN UP</a></li>
+    </ul>
+  </nav>
 
-    <section class="features">
-        <div class="feature-card">
-            <h3>Event Management</h3>
-            <p>Organize and schedule your events easily.</p>
-        </div>
-        <div class="feature-card">
-            <h3>Budget Tracking</h3>
-            <p>Keep your expenses under control.</p>
-        </div>
-        <div class="feature-card">
-            <h3>Notifications</h3>
-            <p>Get reminders via email automatically.</p>
-        </div>
-    </section>
+  <!-- Hero Section -->
+  <section class="hero">
+    <!-- Background image -->
+    <img src="8187e660-34df-11ea-a725-73882cad7369~rs_1458.webp" alt="Elegant Reception Setup">
 
-    <footer>
-        <p>&copy; 2023 Event Planner Budget Tracker</p>
-    </footer>
+    <!-- Text overlay -->
+    <div class="hero-text">
+      <h1>CAVENDIA : ARCHITECTING EXTRAORDINARY MOMENTS</h1>
+      <p>A bespoke event design collective crafting unforgettable celebrations</p>
+      <button>BOOK NOW →</button>
+    </div>
+  </section>
+
 </body>
 </html>
+
+

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 10, 2026 at 08:37 AM
+-- Generation Time: Apr 03, 2026 at 12:01 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -18,22 +18,23 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `events`
+-- Database: `event-planner-budget-tracker`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `expenses_table`
+-- Table structure for table `task`
 --
 
-CREATE TABLE `expenses_table` (
-  `expense_id` int(11) NOT NULL,
+CREATE TABLE `task` (
+  `task_id` int(11) NOT NULL,
   `event_id` int(11) NOT NULL,
-  `expense_name` varchar(100) NOT NULL,
-  `category` varchar(50) DEFAULT NULL,
-  `amount` decimal(10,2) NOT NULL,
-  `expense_date` date DEFAULT NULL
+  `task_name` varchar(150) NOT NULL,
+  `due_date` date NOT NULL,
+  `priority` varchar(20) NOT NULL,
+  `status` varchar(20) NOT NULL,
+  `assignee` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -41,10 +42,10 @@ CREATE TABLE `expenses_table` (
 --
 
 --
--- Indexes for table `expenses_table`
+-- Indexes for table `task`
 --
-ALTER TABLE `expenses_table`
-  ADD PRIMARY KEY (`expense_id`);
+ALTER TABLE `task`
+  ADD PRIMARY KEY (`task_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cavendia | Events</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: #2f3e2c;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    /* Navigation Bar */
+    nav {
+      background-color: #6b8e6b;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav .logo {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    nav .logo::before {
+      content: "🎟️";
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+    }
+    nav ul li a:hover {
+      color: #dfe8df;
+    }
+
+    /* Layout */
+    .container {
+      flex: 1;
+      display: flex;
+    }
+    .sidebar {
+      flex: 1;
+      background: #f9f9f9;
+      padding: 1rem;
+      border-right: 1px solid #ddd;
+    }
+    .sidebar h2 {
+      margin-bottom: 1rem;
+    }
+    .event {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .event h3 {
+      margin: 0 0 0.5rem;
+    }
+    .add-event {
+      display: block;
+      background: #6b8e6b;
+      color: #fff;
+      text-align: center;
+      padding: 0.8rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .add-event:hover {
+      background: #5a7a5a;
+    }
+
+    .main {
+      flex: 2;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+    .main img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+    .summary {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      margin-bottom: 1.5rem;
+    }
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .buttons button {
+      flex: 1;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 25px;
+      background: #6b8e6b;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .buttons button:hover {
+      background: #5a7a5a;
+    }
+
+    .budget, .expenses {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      margin-bottom: 1.5rem;
+    }
+    .budget h3, .expenses h3 {
+      margin-top: 0;
+    }
+    .expenses ul {
+      list-style: none;
+      padding: 0;
+    }
+    .expenses li {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">CAVENDIA</div>
+    <ul>
+      <li><a href="#">HOME</a></li>
+      <li><a href="#">EVENTS</a></li>
+      <li><a href="#">ABOUT</a></li>
+      <li><a href="#">CONTACT</a></li>
+      <li><a href="#">CREATE EVENT</a></li>
+      <li><a href="#">LOGIN</a></li>
+      <li><a href="#">SIGN UP</a></li>
+    </ul>
+  </nav>
+
+  <!-- Dashboard Layout -->
+  <div class="container">
+    <!-- Sidebar with events -->
+    <div class="sidebar">
+      <h2>My Events</h2>
+      <div class="event">
+        <h3>Elizabeth’s Wedding</h3>
+        <p>July 21, 2026<br>Manila Cathedral</p>
+      </div>
+      <div class="event">
+        <h3>Czarisha’s Debut</h3>
+        <p>October 05, 2026<br>Palo Leyte</p>
+      </div>
+      <div class="event">
+        <h3>Little Miracle Celebration</h3>
+        <p>August 02, 2026<br>La Villa Francisco</p>
+      </div>
+      <div class="event">
+        <h3>Graduation Party</h3>
+        <p>March 22, 2026<br>Astrodome</p>
+      </div>
+      <a href="#" class="add-event">+ Add Event</a>
+    </div>
+
+    <!-- Main content -->
+    <div class="main">
+      <img src="8187e660-34df-11ea-a725-73882cad7369~rs_1458.webp" alt="Elizabeth’s Wedding Venue">
+      <div class="summary">
+        <h3>Summary</h3>
+        <p>A grand heritage wedding celebration set in the heart of Intramuros. This event merges the timeless architecture of the Manila Cathedral with a modern 'Filipiniana-Chic' aesthetic. The reception will follow at a nearby garden courtyard, featuring a sophisticated sage green and ivory color palette, capiz-shell accents, and a curated menu for 150 guests. Primary focus is on coordinating the 3:00 PM cathedral ceremony with the sunset reception logistics.</p>
+      </div>
+
+      <div class="buttons">
+        <button>Add Budget</button>
+        <button>Add Expense</button>
+        <button>View Task</button>
+      </div>
+
+      <div class="budget">
+        <h3>Budget Overview</h3>
+        <p>Total Budget: ₱250,000</p>
+        <p>Total Spent: ₱155,000</p>
+        <p>Remaining: ₱95,000</p>
+      </div>
+
+      <div class="expenses">
+        <h3>Expense Preview</h3>
+        <ul>
+          <li>Venue: ₱90,000</li>
+          <li>Catering: ₱50,000</li>
+          <li>Decorations: ₱70,000</li>
+          <li>Photo/Video Shoot: ₱80,000</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

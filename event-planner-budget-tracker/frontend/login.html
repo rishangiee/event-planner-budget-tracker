@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<<<<<<< HEAD
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cavendia - Login</title>
@@ -264,5 +265,194 @@
         </div>
     </div>
 
+=======
+  <meta charset="UTF-8">
+  <title>Cavendia | Login</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: #2f3e2c;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    /* Navigation Bar */
+    nav {
+      background-color: #6b8e6b; /* sage green */
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav .logo {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    nav .logo::before {
+      content: "🎟️"; /* ticket icon */
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+    }
+    nav ul li a:hover {
+      color: #dfe8df;
+    }
+
+    /* Split Layout */
+    .container {
+      flex: 1;
+      display: flex;
+    }
+    .left {
+      flex: 1;
+      overflow: hidden;
+    }
+    .left img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f9f9f9;
+    }
+
+    /* Login Box */
+    .login-box {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 350px;
+      text-align: center;
+    }
+    .login-box h2 {
+      margin-bottom: 1.5rem;
+      color: #2f3e2c;
+    }
+    .login-box input {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    .login-box button {
+      width: 100%;
+      padding: 0.8rem;
+      background-color: #6b8e6b;
+      border: none;
+      border-radius: 25px;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .login-box button:hover {
+      background-color: #5a7a5a;
+    }
+    .login-box .links {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+    .login-box .links a {
+      color: #6b8e6b;
+      text-decoration: none;
+    }
+    .login-box .links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Social Login */
+    .social-login {
+      margin-top: 1.5rem;
+    }
+    .social-login p {
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .social-icons a {
+      font-size: 1.5rem;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">CAVENDIA</div>
+    <ul>
+      <li><a href="#">HOME</a></li>
+      <li><a href="#">EVENTS</a></li>
+      <li><a href="#">ABOUT</a></li>
+      <li><a href="#">CONTACT</a></li>
+      <li><a href="#">CREATE EVENT</a></li>
+      <li><a href="#">LOGIN</a></li>
+      <li><a href="#">SIGN UP</a></li>
+    </ul>
+  </nav>
+
+  <!-- Split Layout -->
+  <div class="container">
+    <!-- Left side cropped image -->
+    <div class="left">
+      <img src="7116ca3cc890ced0956bcd668cc6441a.jpg" alt="Cavendia Cakes">
+    </div>
+
+    <!-- Right side login form -->
+    <div class="right">
+      <div class="login-box">
+        <h2>Welcome Back</h2>
+        <form>
+          <input type="text" placeholder="Email or mobile number" required>
+          <input type="password" placeholder="Password" required>
+          <button type="submit">LOG IN</button>
+        </form>
+        <div class="links">
+          <p><a href="#">Forgot Password?</a></p>
+          <p>Don’t have an account? <a href="#">Sign up</a></p>
+        </div>
+        <div class="social-login">
+          <p>Or sign up with</p>
+          <div class="social-icons">
+            <a href="#">📘</a> <!-- Facebook -->
+            <a href="#">🔍</a> <!-- Google -->
+            <a href="#">📸</a> <!-- Instagram -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+>>>>>>> 68c80795fcf33e118ccea3ac75c267f3e04c4ebf
 </body>
 </html>
+

@@ -1,34 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Budget - Event Planner</title>
-    <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8">
+  <title>Cavendia | Add Budget</title>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <nav>
-        <div class="logo">EventPlanner</div>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/calendar">Calendar</a></li>
-            <li><a href="/budget">Budget</a></li>
-            <li><a href="/login">Login</a></li>
-        </ul>
-    </nav>
 
-    <div class="container">
-        <h2>Budget Tracker</h2>
-        <button id="addBudgetBtn" class="btn">Add Budget</button>
-        
-        <div id="budgetList" class="budget-list">
-            <!-- Budgets will be loaded here -->
-        </div>
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">CAVENDIA</div>
+    <ul>
+      <li><a href="#">HOME</a></li>
+      <li><a href="#">EVENTS</a></li>
+      <li><a href="#">ABOUT</a></li>
+      <li><a href="#">CONTACT</a></li>
+      <li><a href="#">CREATE EVENT</a></li>
+      <li><a href="#">LOGIN</a></li>
+      <li><a href="#">SIGN UP</a></li>
+    </ul>
+  </nav>
+
+  <!-- Dashboard Layout -->
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h2>My Events</h2>
+      <p>Elizabeth’s Wedding<br>July 21, 2026<br>Manila Cathedral</p>
+      <p>Czarisha’s Debut<br>October 05, 2026<br>Palo Leyte</p>
+      <p>Little Miracle Celebration<br>August 02, 2026<br>La Villa Francisco</p>
+      <p>Graduation Party<br>March 22, 2026<br>Astrodome</p>
     </div>
 
-    <script src="/js/script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', loadBudgets);
-    </script>
+    <!-- Main content -->
+    <div class="main">
+      <!-- Modal for Add Budget Item -->
+      <div class="modal">
+        <h2>Add Budget Item</h2>
+        <!-- Form posts to Flask backend -->
+        <form action="/budget" method="POST">
+          <label for="category">Category Name</label>
+          <input type="text" name="category" placeholder="e.g. Catering" required>
+
+          <label for="amount">Amount</label>
+          <input type="number" name="amount" placeholder="₱ 250000" required>
+
+          <label for="notes">Notes</label>
+          <textarea name="notes" rows="3" placeholder="Additional details..."></textarea>
+
+          <button type="submit">Add To Budget</button>
+        </form>
+      </div>
+
+      <!-- Display items dynamically -->
+      <div class="budget-items">
+        <h3>Budget Items</h3>
+        <ul>
+          {% for item in items %}
+            <li>{{ item.category }} - ₱{{ item.amount }} ({{ item.notes }})</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
