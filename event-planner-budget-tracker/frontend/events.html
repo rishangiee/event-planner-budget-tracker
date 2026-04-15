@@ -1,218 +1,394 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Cavendia | Events</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      color: #2f3e2c;
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cavendia | Event Planner</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    /* Navigation Bar */
-    nav {
-      background-color: #6b8e6b;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    nav .logo {
-      font-weight: bold;
-      font-size: 1.2rem;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    nav .logo::before {
-      content: "🎟️";
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-      margin: 0;
-      padding: 0;
-    }
-    nav ul li a {
-      text-decoration: none;
-      color: #fff;
-      font-weight: 500;
-    }
-    nav ul li a:hover {
-      color: #dfe8df;
-    }
+    <style>
+        :root {
+            --primary-green: #4a7c49;
+            --header-bg: #b3cca2;
+            --sidebar-bg: #e1e7dc;
+            --btn-green: #a3bc96;
+            --dark-btn: #588e58;
+            --white: #ffffff;
+            --text-dark: #1a1a1a;
+            --accent-blue: #00a2ff;
+        }
 
-    /* Layout */
-    .container {
-      flex: 1;
-      display: flex;
-    }
-    .sidebar {
-      flex: 1;
-      background: #f9f9f9;
-      padding: 1rem;
-      border-right: 1px solid #ddd;
-    }
-    .sidebar h2 {
-      margin-bottom: 1rem;
-    }
-    .event {
-      margin-bottom: 1rem;
-      padding: 1rem;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    }
-    .event h3 {
-      margin: 0 0 0.5rem;
-    }
-    .add-event {
-      display: block;
-      background: #6b8e6b;
-      color: #fff;
-      text-align: center;
-      padding: 0.8rem;
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .add-event:hover {
-      background: #5a7a5a;
-    }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    .main {
-      flex: 2;
-      padding: 2rem;
-      overflow-y: auto;
-    }
-    .main img {
-      width: 100%;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-    }
-    .summary {
-      background: #fff;
-      padding: 1rem;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      margin-bottom: 1.5rem;
-    }
-    .buttons {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-    .buttons button {
-      flex: 1;
-      padding: 0.8rem;
-      border: none;
-      border-radius: 25px;
-      background: #6b8e6b;
-      color: #fff;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .buttons button:hover {
-      background: #5a7a5a;
-    }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a1a;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    .budget, .expenses {
-      background: #fff;
-      padding: 1rem;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      margin-bottom: 1.5rem;
-    }
-    .budget h3, .expenses h3 {
-      margin-top: 0;
-    }
-    .expenses ul {
-      list-style: none;
-      padding: 0;
-    }
-    .expenses li {
-      margin-bottom: 0.5rem;
-    }
-  </style>
+        .app-shell {
+            width: 95%;
+            max-width: 1100px;
+            height: 90vh;
+            background: var(--white);
+            border: 3px solid var(--accent-blue);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: var(--header-bg);
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Lalezar', cursive;
+            font-size: 26px;
+            color: var(--primary-green);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .top-nav {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .top-nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 9px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .profile-pic {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #ccc;
+            margin-left: 10px;
+            border: 1px solid var(--primary-green);
+        }
+
+        /* --- Main Layout --- */
+        .container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* --- Sidebar (Planner) --- */
+        .sidebar {
+            width: 350px;
+            background-color: var(--sidebar-bg);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            border-right: 1px solid #ccc;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            font-weight: 800;
+            font-size: 24px;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 8px 35px 8px 15px;
+            border-radius: 8px;
+            border: 1px solid #999;
+            outline: none;
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        .event-list {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .event-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 10px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            cursor: pointer;
+            border: 1px solid transparent;
+            position: relative;
+        }
+
+        .event-card.active {
+            background: #d1e2c4;
+            border: 1px solid var(--primary-green);
+        }
+
+        .event-card img {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .event-info h4 { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+        .event-info p { font-size: 11px; color: #555; line-height: 1.3; }
+
+        .card-icons {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            font-size: 12px;
+            color: #884444;
+        }
+
+        .btn-add-event {
+            background: var(--btn-green);
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        /* --- Main Details Area --- */
+        .main-content {
+            flex: 1;
+            padding: 25px;
+            overflow-y: auto;
+            background: #fdfdfd;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .summary-section h3 { font-size: 22px; font-weight: 800; margin-bottom: 10px; }
+        .summary-section p { font-size: 13px; line-height: 1.5; color: #333; margin-bottom: 20px; }
+
+        .action-btns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .btn-action {
+            background: var(--btn-green);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .budget-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .chart-container {
+            text-align: center;
+        }
+
+        .chart-container h4 { margin-bottom: 15px; font-weight: 800; }
+
+        /* The Gauge/Graph Logic */
+        .gauge {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            margin: 0 auto;
+            background: conic-gradient(from 180deg, #00c48c 0%, #00c48c 40%, #064420 40%, #064420 60%, #eee 60% 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gauge::after {
+            content: "";
+            position: absolute;
+            width: 130px;
+            height: 130px;
+            background: var(--white);
+            border-radius: 50%;
+        }
+
+        .gauge-text {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .gauge-text .amount { font-size: 18px; font-weight: 800; }
+        .gauge-text .label { font-size: 10px; color: #666; }
+
+        /* Expense Table */
+        .expense-preview h4 { margin-bottom: 15px; font-weight: 800; }
+        .expense-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #000;
+            font-size: 14px;
+            font-weight: 700;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav>
-    <div class="logo">CAVENDIA</div>
-    <ul>
-      <li><a href="#">HOME</a></li>
-      <li><a href="#">EVENTS</a></li>
-      <li><a href="#">ABOUT</a></li>
-      <li><a href="#">CONTACT</a></li>
-      <li><a href="#">CREATE EVENT</a></li>
-      <li><a href="#">LOGIN</a></li>
-      <li><a href="#">SIGN UP</a></li>
-    </ul>
-  </nav>
+    <div class="app-shell">
+        <header>
+            <div class="logo">
+                <i class="fa-solid fa-ticket-simple"></i> CAVENDIA
+            </div>
+            <div class="top-nav">
+                <a href="#">Home</a>
+                <a href="#" style="background: white; padding: 4px 10px; border-radius: 15px;">Events</a>
+                <a href="#">Budget</a>
+                <a href="#">Calendar</a>
+                <a href="#">Profile</a>
+                <img src="https://i.pravatar.cc/100?img=26" class="profile-pic" alt="User">
+            </div>
+        </header>
 
-  <!-- Dashboard Layout -->
-  <div class="container">
-    <!-- Sidebar with events -->
-    <div class="sidebar">
-      <h2>My Events</h2>
-      <div class="event">
-        <h3>Elizabeth’s Wedding</h3>
-        <p>July 21, 2026<br>Manila Cathedral</p>
-      </div>
-      <div class="event">
-        <h3>Czarisha’s Debut</h3>
-        <p>October 05, 2026<br>Palo Leyte</p>
-      </div>
-      <div class="event">
-        <h3>Little Miracle Celebration</h3>
-        <p>August 02, 2026<br>La Villa Francisco</p>
-      </div>
-      <div class="event">
-        <h3>Graduation Party</h3>
-        <p>March 22, 2026<br>Astrodome</p>
-      </div>
-      <a href="#" class="add-event">+ Add Event</a>
+        <div class="container">
+            <aside class="sidebar">
+                <h2>Event Planner</h2>
+                <div class="search-box">
+                    <input type="text" placeholder="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+
+                <div class="event-list">
+                    <div class="event-card active">
+                        <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=150" alt="Wedding">
+                        <div class="event-info">
+                            <h4>Elizabeth's Wedding</h4>
+                            <p>July 21, 2026<br><i class="fa-solid fa-location-dot"></i> Manila Cathedral</p>
+                        </div>
+                        <div class="card-icons">
+                            <i class="fa-solid fa-pencil"></i>
+                            <i class="fa-solid fa-trash"></i>
+                        </div>
+                    </div>
+
+                    <div class="event-card">
+                        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=150" alt="Debut">
+                        <div class="event-info">
+                            <h4>Czarisha's Debut</h4>
+                            <p>October 05, 2026<br><i class="fa-solid fa-location-dot"></i> Palo Leyte</p>
+                        </div>
+                        <div class="card-icons" style="color:#666">
+                            <i class="fa-solid fa-pencil"></i>
+                            <i class="fa-solid fa-trash"></i>
+                        </div>
+                    </div>
+
+                    <div class="event-card">
+                        <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=150" alt="Baby">
+                        <div class="event-info">
+                            <h4>Little Miracle Celebration</h4>
+                            <p>August 02, 2026<br><i class="fa-solid fa-location-dot"></i> La Villa Francisco</p>
+                        </div>
+                        <div class="card-icons" style="color:#666">
+                            <i class="fa-solid fa-pencil"></i>
+                            <i class="fa-solid fa-trash"></i>
+                        </div>
+                    </div>
+
+                    <div class="event-card">
+                        <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=150" alt="Grad">
+                        <div class="event-info">
+                            <h4>Graduation Party</h4>
+                            <p>March 22, 2026<br><i class="fa-solid fa-location-dot"></i> Melbourne</p>
+                        </div>
+                        <div class="card-icons" style="color:#666">
+                            <i class="fa-solid fa-trash"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#" class="btn-add-event"><i class="fa-solid fa-plus"></i> Add Event</a>
+            </aside>
+
+            <main class="main-content">
+                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1000" class="hero-img" alt="Venue">
+                
+                <section class="summary-section">
+                    <h3>Summary</h3>
+                    <p>A grand heritage wedding celebration set in the heart of Intramuros. This event merges the timeless architecture of the Manila Cathedral with a modern 'Filipiniana-Chic' aesthetic. The reception will follow at a nearby garden courtyard, featuring a sophisticated sage green and ivory color palette, capiz-shell accents, and a curated menu for 150 guests.</p>
+                </section>
+
+                <div class="action-btns">
+                    <button class="btn-action">Add Budget</button>
+                    <button class="btn-action">Add Expense</button>
+                    <button class="btn-action">View Task</button>
+                </div>
+
+                <div class="budget-grid">
+                    <div class="chart-container">
+                        <h4>Budget Overview</h4>
+                        <p style="font-size: 10px; margin-bottom: 10px; font-weight: 800;">Total Budget: ₱ 250,000</p>
+                        <div class="gauge">
+                            <div class="gauge-text">
+                                <div class="amount">₱ 95,000</div>
+                                <div class="label">Total Spent: ₱ 155,000</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="expense-preview">
+                        <h4>Expense Preview</h4>
+                        <div class="expense-row"><span>Venue</span><span>₱ 90,000</span></div>
+                        <div class="expense-row"><span>Catering</span><span>₱ 50,000</span></div>
+                        <div class="expense-row"><span>Decorations</span><span>₱ 70,000</span></div>
+                        <div class="expense-row"><span>Photo/Video Shoot</span><span>₱ 80,000</span></div>
+                    </div>
+                </div>
+            </main>
+        </div>
     </div>
-
-    <!-- Main content -->
-    <div class="main">
-      <img src="8187e660-34df-11ea-a725-73882cad7369~rs_1458.webp" alt="Elizabeth’s Wedding Venue">
-      <div class="summary">
-        <h3>Summary</h3>
-        <p>A grand heritage wedding celebration set in the heart of Intramuros. This event merges the timeless architecture of the Manila Cathedral with a modern 'Filipiniana-Chic' aesthetic. The reception will follow at a nearby garden courtyard, featuring a sophisticated sage green and ivory color palette, capiz-shell accents, and a curated menu for 150 guests. Primary focus is on coordinating the 3:00 PM cathedral ceremony with the sunset reception logistics.</p>
-      </div>
-
-      <div class="buttons">
-        <button>Add Budget</button>
-        <button>Add Expense</button>
-        <button>View Task</button>
-      </div>
-
-      <div class="budget">
-        <h3>Budget Overview</h3>
-        <p>Total Budget: ₱250,000</p>
-        <p>Total Spent: ₱155,000</p>
-        <p>Remaining: ₱95,000</p>
-      </div>
-
-      <div class="expenses">
-        <h3>Expense Preview</h3>
-        <ul>
-          <li>Venue: ₱90,000</li>
-          <li>Catering: ₱50,000</li>
-          <li>Decorations: ₱70,000</li>
-          <li>Photo/Video Shoot: ₱80,000</li>
-        </ul>
-      </div>
-    </div>
-  </div>
 
 </body>
 </html>

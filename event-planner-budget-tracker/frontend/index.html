@@ -1,115 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Cavendia | Architecting Extraordinary Moments</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      color: #2f3e2c;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cavendia | Architecting Extraordinary Moments</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
-    /* Navigation Bar */
-    nav {
-      background-color: #6b8e6b; /* sage green */
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    nav .logo {
-      font-weight: bold;
-      font-size: 1.2rem;
-      color: #fff;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-      margin: 0;
-      padding: 0;
-    }
-    nav ul li a {
-      text-decoration: none;
-      color: #fff;
-      font-weight: 500;
-    }
-    nav ul li a:hover {
-      color: #dfe8df;
-    }
+    <style>
+        :root {
+            --primary-green: #4a7c49;
+            --header-bg: #b3cca2;
+            --btn-bg: #a3bc96;
+            --dark-pill: #588e58;
+            --card-bg: #e1e7dc;
+            --blue-border: #00a2ff;
+        }
 
-    /* Hero Section */
-    .hero {
-      position: relative;
-      text-align: center;
-    }
-    .hero img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .hero-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(255,255,255,0.75); /* overlay for readability */
-      padding: 2rem;
-      border-radius: 12px;
-      max-width: 700px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    .hero-text h1 {
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
-    }
-    .hero-text p {
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
-    }
-    .hero-text button {
-      background-color: #6b8e6b;
-      border: none;
-      padding: 0.8rem 2rem;
-      border-radius: 25px;
-      color: #fff;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-    .hero-text button:hover {
-      background-color: #5a7a5a;
-    }
-  </style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a1a;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Main Container with the blue border from the image */
+        .app-wrapper {
+            width: 100%;
+            max-width: 1200px;
+            border: 4px solid var(--blue-border);
+            border-radius: 4px;
+            overflow: hidden;
+            background-color: #fff;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            background-color: var(--header-bg);
+            padding: 10px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex: 1;
+        }
+
+        .nav-group.right { justify-content: flex-end; }
+
+        nav a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .active-pill {
+            background-color: var(--dark-pill);
+            color: white !important;
+            padding: 6px 16px;
+            border-radius: 20px;
+        }
+
+        .logo {
+            font-family: 'Lalezar', cursive;
+            font-size: 28px;
+            color: var(--primary-green);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 0;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            height: 600px;
+            background: url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=2000') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-card {
+            background: var(--card-bg);
+            padding: 60px 40px;
+            border-radius: 50px;
+            max-width: 650px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .hero-card h1 {
+            font-size: 32px;
+            font-weight: 800;
+            color: #000;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        .hero-card p {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .btn-get-started {
+            background-color: var(--btn-bg);
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-get-started:hover {
+            background-color: var(--dark-pill);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 900px) {
+            nav { flex-direction: column; gap: 10px; padding: 20px; }
+            .nav-group { justify-content: center; }
+            .hero-card { margin: 20px; width: 90%; }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav>
-    <div class="logo">CAVENDIA</div>
-    <ul>
-      <li><a href="#">HOME</a></li>
-      <li><a href="#">EVENTS</a></li>
-      <li><a href="#">ABOUT</a></li>
-      <li><a href="#">CONTACT</a></li>
-      <li><a href="#">CREATE EVENT</a></li>
-      <li><a href="#">LOGIN</a></li>
-      <li><a href="#">SIGN UP</a></li>
-    </ul>
-  </nav>
+    <div class="app-wrapper">
+        <nav>
+            <div class="nav-group">
+                <a href="#" class="active-pill">Home</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </div>
+            
+            <div class="logo">
+                <i class="fa-solid fa-ticket-simple"></i> CAVENDIA
+            </div>
+            
+            <div class="nav-group right">
+                <a href="#">Create Event</a>
+                <a href="#">Login</a>
+                <a href="#">Sign Up</a>
+            </div>
+        </nav>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <!-- Background image -->
-    <img src="8187e660-34df-11ea-a725-73882cad7369~rs_1458.webp" alt="Elegant Reception Setup">
-
-    <!-- Text overlay -->
-    <div class="hero-text">
-      <h1>CAVENDIA : ARCHITECTING EXTRAORDINARY MOMENTS</h1>
-      <p>A bespoke event design collective crafting unforgettable celebrations</p>
-      <button>BOOK NOW →</button>
+        <section class="hero">
+            <div class="hero-card">
+                <h1>CAVENDIA : Architecting Extraordinary Moments</h1>
+                <p>A bespoke event design collective crafting unforgettable celebrations</p>
+                <button class="btn-get-started">
+                    Get Started <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
     </div>
-  </section>
 
 </body>
 </html>

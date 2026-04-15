@@ -1,68 +1,362 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Cavendia | Add Budget</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cavendia | Add Budget</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-green: #4a7c49;
+            --header-bg: #b3cca2;
+            --sidebar-bg: #e1e7dc;
+            --btn-green: #a3bc96;
+            --white: #ffffff;
+            --accent-blue: #00a2ff;
+            --modal-bg: #e1e7dc; /* Matching the sidebar sage green */
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+
+        body {
+            background-color: #1a1a1a;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* --- Main App Container --- */
+        .app-window {
+            width: 95%;
+            max-width: 1200px;
+            height: 90vh;
+            background: var(--white);
+            border: 4px solid var(--accent-blue);
+            display: flex;
+            flex-direction: column;
+            position: relative; /* Context for absolute centering */
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: var(--header-bg);
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--primary-green);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .top-nav { display: flex; gap: 20px; align-items: center; }
+        .top-nav a { text-decoration: none; color: #000; font-size: 11px; font-weight: 800; text-transform: uppercase; }
+
+        /* --- Content Layout --- */
+        .content-body { display: flex; flex: 1; overflow: hidden; position: relative; }
+
+        /* --- Sidebar --- */
+        .sidebar {
+            width: 320px;
+            background-color: var(--sidebar-bg);
+            padding: 20px;
+            border-right: 1px solid #ccc;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .sidebar.hidden {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .sidebar h2 { font-size: 26px; font-weight: 900; text-align: center; margin-bottom: 20px; }
+
+        .event-card {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 15px;
+            border: 2px solid transparent;
+        }
+
+        .event-card.active { border-color: var(--primary-green); background: #cbd9c0; }
+        .event-card img { width: 60px; height: 60px; border-radius: 10px; object-fit: cover; }
+        .event-info h4 { font-size: 14px; font-weight: 900; }
+        .event-info p { font-size: 11px; color: #444; line-height: 1.4; }
+
+        /* --- PERFECTLY CENTERED MODAL --- */
+        .modal-overlay {
+            position: absolute;
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2); /* Semi-transparent dimming */
+            display: flex;
+            align-items: center;     /* Vertical center */
+            justify-content: center;  /* Horizontal center */
+            z-index: 1000;
+        }
+
+        .modal-card {
+            background: var(--modal-bg);
+            width: 450px;
+            padding: 40px;
+            border-radius: 40px; /* Highly rounded as per image_16d1c2.png */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+            position: relative;
+        }
+
+        .modal-card h2 {
+            font-size: 26px;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 25px; 
+            right: 30px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        /* --- Form Elements --- */
+        .form-group { margin-bottom: 20px; }
+        .form-group label {
+            display: block;
+            font-weight: 900;
+            font-size: 14px;
+            margin-bottom: 8px;
+            padding-left: 5px;
+        }
+
+        .input-wrapper {
+            background: white;
+            border-radius: 15px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            border: 1px solid #aaa;
+        }
+
+        .input-wrapper input, 
+        .input-wrapper textarea {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-weight: 700;
+            font-size: 15px;
+            color: #333;
+        }
+
+        .input-wrapper i {
+            color: #888;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+        .btn-submit {
+            background: var(--btn-green);
+            color: white;
+            width: 100%;
+            padding: 18px;
+            border: none;
+            border-radius: 15px;
+            font-weight: 900;
+            font-size: 18px;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-submit:hover {
+            background: var(--primary-green);
+        }
+
+        /* Additional styling for better UX */
+        .modal-overlay.hidden {
+            display: none;
+        }
+
+        .event-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .event-card:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .success-message {
+            background: #4a7c49;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+    </style>
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav>
-    <div class="logo">CAVENDIA</div>
-    <ul>
-      <li><a href="#">HOME</a></li>
-      <li><a href="#">EVENTS</a></li>
-      <li><a href="#">ABOUT</a></li>
-      <li><a href="#">CONTACT</a></li>
-      <li><a href="#">CREATE EVENT</a></li>
-      <li><a href="#">LOGIN</a></li>
-      <li><a href="#">SIGN UP</a></li>
-    </ul>
-  </nav>
+    <div class="app-window">
+        <header>
+            <div class="logo"><i class="fa-solid fa-ticket"></i> CAVENDIA</div>
+            <nav class="top-nav">
+                <a href="#">Home</a>
+                <a href="#">Events</a>
+                <a href="#">Budget</a>
+                <a href="#">Profile</a>
+            </nav>
+        </header>
 
-  <!-- Dashboard Layout -->
-  <div class="container">
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <h2>My Events</h2>
-      <p>Elizabeth’s Wedding<br>July 21, 2026<br>Manila Cathedral</p>
-      <p>Czarisha’s Debut<br>October 05, 2026<br>Palo Leyte</p>
-      <p>Little Miracle Celebration<br>August 02, 2026<br>La Villa Francisco</p>
-      <p>Graduation Party<br>March 22, 2026<br>Astrodome</p>
+        <div class="content-body">
+            <aside class="sidebar">
+                <h2>Event Planner</h2>
+                <div class="event-card active" onclick="selectEvent(this)">
+                    <img src="image_c338dc.png" alt="Wedding">
+                    <div class="event-info">
+                        <h4>Elizabeth's Wedding</h4>
+                        <p>December 22, 2026<br><i class="fa-solid fa-location-dot"></i> Manila Cathedral</p>
+                    </div>
+                </div>
+            </aside>
+
+            <main style="flex:1; background:#f4f6f2;"></main>
+
+            <div class="modal-overlay" id="budgetModal">
+                <div class="modal-card">
+                    <i class="fa-solid fa-xmark close-btn" onclick="closeBudgetModal()"></i>
+                    <h2>Add Budget Item</h2>
+                    
+                    <div class="success-message" id="successMessage">✓ Budget item added successfully!</div>
+                    
+                    <form id="budgetForm" onsubmit="handleBudgetSubmit(event)">
+                        <div class="form-group">
+                            <label for="category">Category Name</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="category" name="category" placeholder="e.g., Catering" required>
+                                <i class="fa-solid fa-pencil"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="amount">Amount</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="amount" name="amount" placeholder="e.g., ₱ 250,000" required>
+                                <i class="fa-solid fa-pencil"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="notes">Notes</label>
+                            <div class="input-wrapper">
+                                <textarea id="notes" name="notes" rows="3" placeholder="Add any notes..."></textarea>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-submit">Add To Budget</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Main content -->
-    <div class="main">
-      <!-- Modal for Add Budget Item -->
-      <div class="modal">
-        <h2>Add Budget Item</h2>
-        <!-- Form posts to Flask backend -->
-        <form action="/budget" method="POST">
-          <label for="category">Category Name</label>
-          <input type="text" name="category" placeholder="e.g. Catering" required>
+    <script>
+        // Close budget modal
+        function closeBudgetModal() {
+            const modal = document.getElementById('budgetModal');
+            const sidebar = document.querySelector('.sidebar');
+            modal.classList.add('hidden');
+            sidebar.classList.remove('hidden');
+        }
 
-          <label for="amount">Amount</label>
-          <input type="number" name="amount" placeholder="₱ 250000" required>
+        // Open budget modal
+        function openBudgetModal() {
+            const modal = document.getElementById('budgetModal');
+            const sidebar = document.querySelector('.sidebar');
+            modal.classList.remove('hidden');
+            sidebar.classList.add('hidden');
+        }
 
-          <label for="notes">Notes</label>
-          <textarea name="notes" rows="3" placeholder="Additional details..."></textarea>
+        // Handle form submission
+        function handleBudgetSubmit(event) {
+            event.preventDefault();
+            
+            const category = document.getElementById('category').value;
+            const amount = document.getElementById('amount').value;
+            const notes = document.getElementById('notes').value;
+            
+            // Log the form data (in a real app, this would be sent to backend)
+            console.log({
+                category: category,
+                amount: amount,
+                notes: notes,
+                timestamp: new Date().toISOString()
+            });
+            
+            // Show success message
+            const successMsg = document.getElementById('successMessage');
+            successMsg.classList.add('show');
+            
+            // Reset form
+            document.getElementById('budgetForm').reset();
+            
+            // Hide success message and close modal after 2 seconds
+            setTimeout(() => {
+                successMsg.classList.remove('show');
+                closeBudgetModal();
+            }, 2000);
+        }
 
-          <button type="submit">Add To Budget</button>
-        </form>
-      </div>
+        // Handle event card selection
+        function selectEvent(element) {
+            const allCards = document.querySelectorAll('.event-card');
+            allCards.forEach(card => card.classList.remove('active'));
+            element.classList.add('active');
+            
+            // Open modal when event is selected
+            openBudgetModal();
+        }
 
-      <!-- Display items dynamically -->
-      <div class="budget-items">
-        <h3>Budget Items</h3>
-        <ul>
-          {% for item in items %}
-            <li>{{ item.category }} - ₱{{ item.amount }} ({{ item.notes }})</li>
-          {% endfor %}
-        </ul>
-      </div>
-    </div>
-  </div>
+        // Close modal when clicking outside the modal card
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('budgetModal');
+            if (event.target === modal) {
+                closeBudgetModal();
+            }
+        });
 
+        // Allow Escape key to close modal
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeBudgetModal();
+            }
+        });
+    </script>
 </body>
 </html>
