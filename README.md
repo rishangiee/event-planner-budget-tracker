@@ -42,5 +42,4 @@ A web-based event planner calendar with budget and expense tracking system.
 - Event reminders and notifications  
 - Budget and expense report export (PDF or Excel)  
 - Mobile-responsive design  
-
-SCRUM-27 Ticket 9: Dashboard Overview
+SCRUM-28 Ticket 10: UI Enhancement (Final Design)
