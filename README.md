@@ -1,0 +1,46 @@
+# Event Planner Calendar with Budget Tracker System
+
+## Description
+A web-based event planner calendar with budget and expense tracking system.
+
+## Objectives
+- To help users organize and manage events effectively  
+- To provide a calendar-based event planning system  
+- To track budgets and expenses for each event  
+- To automatically calculate total expenses and remaining budget  
+
+## Features
+- Login and registration
+- Dashboard (overview, budget, expenses, balance, upcoming events)
+- Calendar and event management
+- Event details (name, date, location, description)
+- Budget tracking per event
+- Expense tracking (add, edit, delete)
+- Task checklist
+- Categories and vendors management
+- Automatic budget calculation
+
+## Technologies Used
+- HTML  
+- CSS  
+-
+- MySQL  
+- GitHub  
+
+## Project Structure
+
+
+## How to Run the Project
+1. Clone or download the repository from GitHub  
+2. Open the project folder on your computer  
+3. Import the database using the `schema.sql` file  
+4. Run the project using a local server such as XAMPP  
+5. Open the project in a web browser  
+
+## Future Improvements
+- User authentication (login and registration)  
+- Event reminders and notifications  
+- Budget and expense report export (PDF or Excel)  
+- Mobile-responsive design  
+
+SCRUM-27 Ticket 9: Dashboard Overview
